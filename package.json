@@ -1,15 +1,15 @@
 {
   "name": "phaser-starter",
   "version": "3.0.0",
-  "description": "Minimal starter project to get a Phaser game environment up and running with ease.",
+  "description": "Minimal starter project to get a Phaser game environment up and running with ease. Forked from Oliver Benns Phaser 3 Starter",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oliverbenns/phaser-starter.git"
+    "url": "git+https://github.com/daaveuk/phaser-starter.git"
   },
   "author": {
-    "name": "Oliver Benns",
-    "email": "info@oliverbenns.com",
-    "url": "https://oliverbenns.com"
+    "name": "David Henderson",
+    "email": "me@daave.co.uk",
+    "url": "https://daave.co.uk"
   },
   "license": "MIT",
   "bugs": {
