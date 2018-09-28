@@ -1,5 +1,6 @@
 import 'phaser';
 import BootScene from './scenes/BootScene';
+import InitialScene from './scenes/InitialScene';
 const config = {
   type: Phaser.Auto,
   pixelArt: true,
@@ -13,7 +14,7 @@ const config = {
       debug: false
     }
   },
-  scene: [ BootScene ]
+  scene: [ BootScene, InitialScene ]
 };
 
 const game = new Phaser.Game(config);
