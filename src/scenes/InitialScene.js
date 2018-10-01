@@ -9,17 +9,12 @@ class InitialScene extends Phaser.Scene {
     this.platforms;
   }
 
-  preload() {
-    //this.load.spritesheet('dude', Dude, { frameWidth: 32, frameHeight: 48 });
-  }
+  preload() {}
 
   create() {
-    console.log(this);
     const { config } = this.game;
     const centerX = config.width / 2;
     const centerY = config.height / 2;
-    // this.cameras.main.setSize(config.width, config.height);
-    // this.cameras.main.setZoom(1.5);
     this.add.image(centerX, centerY, 'sky');
     this.add.image(centerX, centerY, 'star');
     this.createPlatforms();
@@ -29,7 +24,6 @@ class InitialScene extends Phaser.Scene {
       x: centerX,
       y: centerY
     });
-    // this.cameras.main.startFollow(this.player);
     this.physics.add.collider(this.player, this.platforms);
   }
 

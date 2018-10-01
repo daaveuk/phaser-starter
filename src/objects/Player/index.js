@@ -15,7 +15,7 @@ export default class extends Phaser.Physics.Arcade.Sprite {
     this.cursors = scene.input.keyboard.createCursorKeys();
     scene.add.existing(this);
     this.registerPhysics();
-    this.registerAnimations(scene);
+    this.registerAnimations();
   }
 
   registerPhysics() {
@@ -26,45 +26,58 @@ export default class extends Phaser.Physics.Arcade.Sprite {
     this.setCollideWorldBounds(true);
   }
 
-  registerAnimations(scene) {
-    var frameNames = scene.anims.generateFrameNames('bomb', {
+  registerAnimations() {
+    let { scene } = this;
+    let walk_left = scene.anims.generateFrameNames('dude', {
+      prefix: 'walk_left',
       start: 1,
-      end: 8,
-      zeroPad: 4,
-      prefix: 'capguy/walk/',
-      suffix: '.png'
+      end: 4
     });
-    console.log(frameNames);
-    this.scene.anims.create({
+
+    let walk_right = scene.anims.generateFrameNames('dude', {
+      prefix: 'walk_right',
+      start: 1,
+      end: 4
+    });
+
+    let stood_still = scene.anims.generateFrameNames('dude', {
+      prefix: 'stood_still',
+      start: 1,
+      end: 1
+    });
+
+    scene.anims.create({
       key: `walk_left`,
-      frames: [ 'walk_left1, walk_left2' ],
+      frames: walk_left,
       frameRate: 10,
       repeat: -1
     });
 
-    this.scene.anims.create({
+    scene.anims.create({
+      key: `stood_still`,
+      frames: stood_still,
+      frameRate: 10,
+      repeat: -1
+    });
+
+    scene.anims.create({
       key: `walk_right`,
-      frames: this.scene.anims.generateFrameNumbers('walk_right', {
-        start: 1,
-        end: 4
-      }),
+      frames: walk_right,
       frameRate: 10,
       repeat: -1
     });
-
-    console.log(this);
   }
 
   movePlayer() {
     if (this.cursors.left.isDown) {
       this.setVelocityX(-160);
-      this.anims.play(`walk_left`, true);
+      this.anims.play('walk_left', true);
     } else if (this.cursors.right.isDown) {
       this.setVelocityX(160);
-      this.anims.play(`walk_right`, true);
+      this.anims.play('walk_right', true);
     } else {
       this.setVelocityX(0);
-      //this.anims.play('stood_still');
+      this.anims.play('stood_still');
     }
     if (this.cursors.up.isDown && this.body.touching.down) {
       this.setVelocityY(-480);
