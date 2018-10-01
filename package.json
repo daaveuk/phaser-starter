@@ -33,6 +33,7 @@
     "build": "rm -rf dist && webpack --mode production"
   },
   "dependencies": {
+    "lodash": "^4.17.11",
     "phaser": "^3.11.0"
   },
   "babel": {

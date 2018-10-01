@@ -1,12 +1,15 @@
 import 'phaser';
 import BootScene from './scenes/BootScene';
 import InitialScene from './scenes/InitialScene';
+import State from './global/state';
+
 const config = {
   type: Phaser.Auto,
   pixelArt: true,
   parent: 'content',
   width: 800,
   height: 600,
+  state: new State('game'),
   physics: {
     default: 'arcade',
     arcade: {

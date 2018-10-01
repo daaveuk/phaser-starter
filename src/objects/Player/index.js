@@ -1,17 +1,23 @@
 export default class extends Phaser.Physics.Arcade.Sprite {
   constructor(config) {
     super(config.scene, config.x, config.y, config.key);
-    const { scene, x, y, key } = config;
+    const { scene, x, y, key, state } = config;
+    this.state = state;
+    this.scene = scene;
+    this.key = key;
 
-    this.config = {
+    this.attr = {
+      key,
+      x: this.x,
+      y: this.y,
       bounce: 0.2,
       gravity: 800,
       jump: 480,
       speed: 160
     };
 
-    this.scene = scene;
-    this.key = key;
+    //this.state.set('player', this.attr);
+
     this.cursors = scene.input.keyboard.createCursorKeys();
     scene.add.existing(this);
     this.registerPhysics();
@@ -19,7 +25,7 @@ export default class extends Phaser.Physics.Arcade.Sprite {
   }
 
   registerPhysics() {
-    const { bounce, gravity } = this.config;
+    const { bounce, gravity } = this.attr;
     this.scene.physics.world.enable(this);
     this.setBounce(bounce);
     this.body.setGravityY(gravity);
@@ -68,19 +74,21 @@ export default class extends Phaser.Physics.Arcade.Sprite {
     });
   }
 
-  movePlayer() {
-    if (this.cursors.left.isDown) {
-      this.setVelocityX(-160);
-      this.anims.play('walk_left', true);
-    } else if (this.cursors.right.isDown) {
-      this.setVelocityX(160);
-      this.anims.play('walk_right', true);
-    } else {
-      this.setVelocityX(0);
-      this.anims.play('stood_still');
-    }
-    if (this.cursors.up.isDown && this.body.touching.down) {
-      this.setVelocityY(-480);
-    }
+  update() {
+    // //this.getState();
+    // if (this.cursors.left.isDown) {
+    //   this.setVelocityX(-160);
+    //   this.anims.play('walk_left', true);
+    // } else if (this.cursors.right.isDown) {
+    //   this.setVelocityX(160);
+    //   this.anims.play('walk_right', true);
+    // } else {
+    //   this.setVelocityX(0);
+    //   this.anims.play('stood_still');
+    // }
+    // if (this.cursors.up.isDown && this.body.touching.down) {
+    //   this.setVelocityY(-480);
+    // }
+    //this.setState();
   }
 }
